@@ -8,7 +8,13 @@ module.exports = {
     context: path.resolve('src'),
     entry: {
         styles: './css/main.scss',
-        app: './app.js',
+        //app: './app.js',
+        indexJs: [
+            './index/index.js'
+        ],
+        contactJs: [
+            './contact/contact.js'
+        ],
         vendorJs: [
             '../node_modules/bootstrap/dist/js/bootstrap.min.js'
         ],
@@ -109,13 +115,15 @@ module.exports = {
             allChunks: true
         }),
         new htmlWebpackPlugin({
+            chunks: ['indexJs', 'vendorJs', 'vendorStyles', 'styles'],
             filename: 'index.html',
-            template: './html/index.html',
+            template: './index/index.html',
             hash: true
         }),
         new htmlWebpackPlugin({
+            chunks: ['contactJs', 'vendorJs', 'vendorStyles', 'styles'],
             filename: 'contact.html',
-            template: './html/contact.html',
+            template: './contact/contact.html',
             hash: true
         }),
         new webpack.ProvidePlugin({
